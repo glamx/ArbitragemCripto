@@ -1,22 +1,18 @@
 const WebSocket = require("ws");
-require('dotenv').config()
+require('dotenv').config();
 
 const ws = new WebSocket(`${process.env.STREAM_URL}/!miniTicker@arr`);
-
 const book = {};
 
+ws.onmessage = (event) => {
+    const arr = JSON.parse(event.data);
+    arr.forEach(obj => book[obj.s] = { price: parseFloat(obj.c) });
 
-ws.onmessage = async (event) => {
-    
-    const arr = JSON.parse(event.data)
-     arr.map(obj => book[obj.s] = { price: parseFloat(obj.c)})
-    //console.log(arr)
+    if (module.exports.onPriceUpdate) module.exports.onPriceUpdate();
 }
 
-function getBook(symbol) {
-    return book[symbol]
+function getBook() {
+    return book;
 }
 
-module.exports = {
-    getBook
-}
+module.exports = { getBook, onPriceUpdate: null };
