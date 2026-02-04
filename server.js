@@ -16,6 +16,13 @@ let allSymbols = [];
 let buySymbols = [];
 let buyBuySellPairs = [];
 
+
+
+
+
+
+
+
 // Função para descobrir todos os pares BBS
 function getBuyBuySell(buySymbols, allSymbols, book) {
     const buyBuySell = [];
@@ -37,6 +44,11 @@ function getBuyBuySell(buySymbols, allSymbols, book) {
     }
     return buyBuySell;
 }
+
+
+
+
+
 
 
 
@@ -62,7 +74,7 @@ function processBuyBuySell(buyBuySell) {
 
         if (crossRate > PROFITABILITY) {
             opportunities.push({
-                text: `BBS EM ${candidate.buy1.symbol} > ${candidate.buy2.symbol} > ${candidate.sell1.symbol} = ${crossRate}`,
+                text: `COMPRA EM ${candidate.buy1.symbol} > ${candidate.buy2.symbol} > ${candidate.sell1.symbol} = ${crossRate}`,
                 retorno: `Investindo ${QUOTE}${AMOUNT}, retorna ${QUOTE}${(AMOUNT / priceBuy1 / priceBuy2 * priceSell1)}`
             });
         }
@@ -70,6 +82,9 @@ function processBuyBuySell(buyBuySell) {
 
     return opportunities;
 }
+
+
+
 
 
 
@@ -91,6 +106,9 @@ async function initSymbols() {
 
 
 initSymbols(); // chama ao iniciar o servidor
+
+
+
 
 
 
