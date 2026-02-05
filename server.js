@@ -1,9 +1,10 @@
 const express = require("express");
+const app = express();
+
 const http = require("http");
 const socketIo = require("socket.io");
 const stream = require("./stream");
 
-const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
@@ -144,7 +145,7 @@ stream.onPriceUpdate = () => {
 
 
 
-
+//servidor
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
